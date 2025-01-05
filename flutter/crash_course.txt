@@ -1,0 +1,7 @@
+https://www.youtube.com/watch?v=v-2rWplEDoA&list=PL4cUxeGkcC9iVGY3ppchN9kIauln8IiEh&index=12
+Dart crash course
+
+https://www.youtube.com/watch?v=j_rCDc_X-k8&list=PL4cUxeGkcC9giLVXCHSQmWqlHc9BLXdVx&index=1
+Flutter crash course 
+
+Установка на windows

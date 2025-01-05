@@ -1,0 +1,14 @@
+https://www.youtube.com/watch?v=u8vMu7viCm8
+
+Git clone https://github.com/coderyansolomon/cypress-course
+
+Npm I
+npm i cypress -save-dev
+
+Npc cypress open
+
+https://docs.cypress.io/app/core-concepts/interacting-with-elements#Actionability
+
+https://docs.cypress.io/app/references/assertions#Chai
+
+1:06:00
