@@ -11,4 +11,4 @@ https://docs.cypress.io/app/core-concepts/interacting-with-elements#Actionabilit
 
 https://docs.cypress.io/app/references/assertions#Chai
 
-1:06:00
+1:07:00
