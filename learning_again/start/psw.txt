@@ -1,0 +1,62 @@
+ssh root@2983579.23523.5.2.5
+
+***********
+
+Обновляем пакеты и ядро безопасности:
+
+Apt - это пакетный менеджер который идет из-под коробки ubuntu
+
+sudo apt update
+sudo apt upgrade -y
+sudo apt autoremove -y
+
+sudo adduser deploy && sudo usermod -aG sudo deploy
+
+************ deploy
+
+Генерит ssh ключ 
+
+ssh-keygen -t ed25519 -C "your@email.com" -f ~/.ssh/id_ed25519_deploy
+
+Название именно в _deploy - храним, так как 
+
+Что такое Ed25519
+
+Полное название: Edwards-Curve Digital Signature Algorithm (EdDSA) с кривой Curve25519.
+
+
+
+На локалке ssh-copy-id -i ~/.ssh/id_ed25519_deploy.pub deploy@5.35.92.117 - копировать ключ на сервер,
+
+Passphrase test
+
+
+Далее подключение с ключом
+
+ssh -i ~/.ssh/id_ed25519_deploy deploy@5.35.92.117
+
+
+В итоге через root блять - потому что удобнее
+
+3️⃣ Настройка firewall
+
+Используем UFW:
+
+UFW расшифровывается как:
+
+Uncomplicated Firewall → «Простой брандмауэр»
+
+sudo ufw allow OpenSSH
+sudo ufw allow 80/tcp   # HTTP
+sudo ufw allow 443/tcp  # HTTPS
+sudo ufw enable
+sudo ufw status
+
+
+
+
+sudo apt install -y docker.io docker-compose
+sudo systemctl enable --now docker
+
+Ставим докер и докер компоуз - при это делаем так чтобы они автоматически запускались при запуске сервера
+
