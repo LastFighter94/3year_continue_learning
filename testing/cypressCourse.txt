@@ -5,7 +5,7 @@ Git clone https://github.com/coderyansolomon/cypress-course
 Npm I
 npm i cypress -save-dev
 
-Npc cypress open
+Npx cypress open
 
 https://docs.cypress.io/app/core-concepts/interacting-with-elements#Actionability
 

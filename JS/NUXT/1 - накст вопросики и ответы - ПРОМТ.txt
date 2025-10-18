@@ -1,0 +1,71 @@
+export default defineNuxtConfig({
+// Настройки для production (боевого окружения)
+$production: {
+routeRules: {
+'/**': { isr: true }, // Включаем ISR для всех страниц
+'/api/**': { swr: true }, // Stale-while-revalidate для API ////
+'/admin/**': { ssr: false } // Отключаем SSR для админки (клиентский рендеринг) //// почему и зачем?
+},
+runtimeConfig: {
+public: { //// зачем делать публичные переменные окружения?
+apiBase: 'https://api.example.com',
+analyticsKey: 'PROD-XYZ-123'
+},
+secretKey: process.env.SECRET_KEY_PROD
+},
+modules: [
+'@nuxtjs/axios',
+'@nuxtjs/pwa'
+],
+build: {
+sourcemap: false //// почему?
+}
+},
+
+// Настройки для development (локальная разработка)
+$development: {
+routeRules: {
+'/**': { ssr: true }, // Полный SSR, без ISR //// почему
+'/api/**': { ssr: true } //// почему
+},
+runtimeConfig: {
+public: {
+apiBase: 'http://localhost:3000/api',
+analyticsKey: 'DEV-FAKE-KEY'
+},
+secretKey: process.env.SECRET_KEY_DEV
+},
+modules: [
+'@nuxtjs/axios'
+],
+build: {
+sourcemap: true // Включаем source maps для отладки ////почему и зачем
+}
+},
+
+// Настройки для staging (промежуточное тестовое окружение)
+$env: {
+staging: {
+routeRules: {
+'/**': { isr: 60 }, // ISR с регенерацией раз в минуту //// на кой хрен?
+'/admin/**': { ssr: false } //// почему
+},
+runtimeConfig: {
+public: {
+apiBase: 'https://staging-api.example.com',
+analyticsKey: 'STAGING-KEY-456'
+},
+secretKey: process.env.SECRET_KEY_STAGING
+},
+modules: [
+'@nuxtjs/axios',
+'@nuxtjs/pwa'
+],
+build: {
+sourcemap: true
+}
+}
+}
+})
+
+подробно объясни строчки со знаком ////

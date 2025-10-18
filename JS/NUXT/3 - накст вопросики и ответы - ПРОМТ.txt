@@ -1,0 +1,79 @@
+why i should always use env vars to match your run time config structure - простым языком
+
+Простыми словами, почему важно всегда использовать переменные окружения (env vars), которые точно соответствуют структуре вашего runtimeConfig в Nuxt 3:
+
+1. runtimeConfig и env vars — как связаны?
+В nuxt.config.ts вы объявляете runtimeConfig — это конфигурация, доступная в приложении во время выполнения.
+
+Чтобы изменить эти значения без пересборки, вы используете переменные окружения (env vars).
+
+Nuxt автоматически подставляет значения из env vars в runtimeConfig по строго определённому правилу.
+
+2. Почему env vars должны точно совпадать со структурой runtimeConfig?
+Nuxt ожидает, что переменные окружения будут называться в формате:
+
+text
+NUXT_<ПУТЬ_К_ПАРАМЕТРУ_В_RUNTIMECONFIG>
+Например, если в runtimeConfig есть:
+
+ts
+runtimeConfig: {
+  apiSecret: '',
+  public: {
+    apiBase: ''
+  }
+}
+То переменные окружения должны быть:
+
+text
+NUXT_API_SECRET=значение
+NUXT_PUBLIC_API_BASE=значение
+Если имена не совпадают, Nuxt не сможет автоматически подставить значение из env vars в runtimeConfig во время запуска сервера.
+
+3. Что будет, если не совпадают?
+Значения из env vars не попадут в runtimeConfig — ваше приложение будет использовать дефолтные значения из nuxt.config.ts.
+
+Это может привести к ошибкам, например, если секретный ключ не подставился, или API URL остался неправильным.
+
+В продакшене это особенно критично, потому что .env файл не читается, и все значения должны приходить из системных переменных окружения.
+
+4. Зачем это нужно?
+Позволяет без пересборки менять конфигурацию (например, переключать API между staging и production).
+
+Обеспечивает безопасность — секреты хранятся вне кода.
+
+Гарантирует, что Nuxt корректно подхватит переменные и не возникнет неожиданных багов.
+
+5. Краткий пример
+.env файл:
+
+text
+NUXT_API_SECRET=supersecret123
+NUXT_PUBLIC_API_BASE=https://api.example.com
+nuxt.config.ts:
+
+ts
+export default defineNuxtConfig({
+  runtimeConfig: {
+    apiSecret: '', // будет переопределён NUXT_API_SECRET
+    public: {
+      apiBase: ''  // будет переопределён NUXT_PUBLIC_API_BASE
+    }
+  }
+})
+В приложении:
+
+ts
+const config = useRuntimeConfig()
+console.log(config.apiSecret)       // 'supersecret123'
+console.log(config.public.apiBase)  // 'https://api.example.com'
+Итог
+Всегда делайте имена env vars, которые точно соответствуют структуре runtimeConfig с префиксом NUXT_, чтобы Nuxt мог автоматически подставлять нужные значения в ваше приложение при запуске.
+
+Это ключ к правильной работе конфигурации, безопасности и гибкости вашего Nuxt 3 проекта.
+
+Если хотите, могу помочь с конкретным примером под ваш проект!
+
+
+
+https://www.youtube.com/watch?v=_FYV5WfiWvs

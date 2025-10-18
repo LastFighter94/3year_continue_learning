@@ -1,4 +1,9 @@
 {
+  "/page": "app/page.js",
   "/fundamentals/page": "app/fundamentals/page.js",
-  "/overview/page": "app/overview/page.js"
+  "/overview/page": "app/overview/page.js",
+  "/component/page": "app/component/page.js",
+  "/best-practices/page": "app/best-practices/page.js",
+  "/examples/page": "app/examples/page.js",
+  "/forms/page": "app/forms/page.js"
 }
