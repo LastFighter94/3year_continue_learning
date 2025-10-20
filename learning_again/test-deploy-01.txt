@@ -50,3 +50,9 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 На локалке один маршрут, на вроде другой - и gitignore делаем на .env файл и все в шоколаде
 
 Теперь вопрос - как сделать так чтобы не надо было все время пересобирать контейнер при изменениях, чтобы увидеть их - при этом опять таки без venv и node_modules - хотя это как будто бы нереально - вот и узнаем
+
+
+
+docker compose -f docker-compose.dev.yml up --build
+
+Здесь -f (или --file) говорит Docker Compose, какой файл использовать.
